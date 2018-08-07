@@ -6,7 +6,6 @@ import { FETCH_POSTS } from '../actions';
 export default function(state = {}, action) {
     switch(action.type) {
         case FETCH_POSTS:
-            console.log("actionpayloads", action.payload.data);
             // we used lodash library to take an array of record and create an object out of that
             return _.mapKeys(action.payload.data, 'id'); // mapKeys - we provide first argument which is the array to process,
             // property that we want to pull of each object.

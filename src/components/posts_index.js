@@ -11,7 +11,7 @@ class PostsIndex extends Component {
     }
 
     renderPosts() {
-        _.map(this.props.posts, post => {
+        return _.map(this.props.posts, post => {
             return (
                 <li className="list-group-item" key={post.id}>
                     {post.title}
@@ -21,7 +21,6 @@ class PostsIndex extends Component {
     }
 
     render() {
-        console.log("stateprops", this.props.posts);
         return (
             <div>
                 <h3>Posts</h3>
@@ -37,7 +36,6 @@ function mapStateToProps(state) {
     return { posts: state.posts };
 }
 
-export default connect(mapStateToProps, { fetchPosts })(PostsIndex); 
-// export default connect(null, { fetchPosts })(PostsIndex);
+export default connect(mapStateToProps, { fetchPosts })(PostsIndex);
 // instead of using mapDispatchToProps, for fetching post(this line here is completely identical in nature)
 // connect is doing the same as mapDispatchToProps
