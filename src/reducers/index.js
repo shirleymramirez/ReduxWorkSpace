@@ -1,10 +1,13 @@
 import { combineReducers } from 'redux';
+import { reducer as formReducer } from 'redux-form';
 import PostsReducer from './reducer_posts';
+
 
 // reducer will produce the post piece of state
 
 const rootReducer = combineReducers({
-  posts: PostsReducer  
+  posts: PostsReducer,  
+  form: formReducer
 });
 
 export default rootReducer;
