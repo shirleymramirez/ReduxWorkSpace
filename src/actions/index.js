@@ -1,14 +1,22 @@
 import axios from 'axios';
 
-
 export const FETCH_POSTS = 'fetch_posts';
 
-const ROOT_URL = 'http://reduxblog.herokuapp.com/app';
+const ROOT_URL = 'http://reduxblog.herokuapp.com/api';
+const API_KEY = '?key=DOLLHOUSE1234';
 
-export function fetchPost() {
-    const request = axios.get(`${ROOT_URL}/posts`);
+//purpose of this action creator is to fetch a list of post
+//and it will return an object and it has to have a type.
+export function fetchPosts() {
+    // making axios request get() and assigned it to variable const request
+    const request = axios.get(`${ROOT_URL}/posts${API_KEY}`);
 
     return{
-        type: FETCH_POSTS
+        type: FETCH_POSTS,
+        payload: request //this var request is assigned to payload property action that we are returning
     };
+    //redux promise middleware will made use of the payload property and will automatically 
+    //resolve that request whenever it sees this action come across
+    //so by the time this action arrives at the reducer, payload will contain the response object
+    // from axios which will have the big array of posts.
 }
