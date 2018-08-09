@@ -22,9 +22,12 @@ export function fetchPosts() {
     // from axios which will have the big array of posts.
 }
 
-export function createPost(values) {
+export function createPost(values, callback) {
     // first argument is the URL, and the second argument is the object or data that we want to send in the remote API
-    const request = axios.post(`${ROOT_URL}/posts${API_KEY}`, values);
+    // make the API request -> axios.post(`${ROOT_URL}/posts${API_KEY}`, values)
+    // then after successfully completed calls the callback for a promise
+    const request = axios.post(`${ROOT_URL}/posts${API_KEY}`, values)
+        .then(() => callback());
 
     return {
         type: CREATE_POST,

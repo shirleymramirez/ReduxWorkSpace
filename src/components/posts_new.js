@@ -29,8 +29,15 @@ class PostsNew extends Component {
     }
 
     onSubmit(values) {
-        this.props.createPost(values);
-        console.log(values);
+        // this line wire up to our back-end API( call an action creator to make API request)
+        // pass a callback function to wait until our newpost is created and posted in the specified route
+        this.props.createPost(values, () => {
+             // if we call push with route, this line will be executed and we will automatically navigate back to
+             // the big list of posts, that's what exist at our root route. ('/')
+            // string here must match to one of the route in our applicatio.
+            this.props.history.push('/');
+
+        });
     }
 
     render() {
@@ -56,6 +63,13 @@ class PostsNew extends Component {
                     component={this.renderField}
                />
                <button type="submit" className="btn btn-primary">Submit</button>
+
+               {/* we used Link tag to navigate around to different components inside our application */}
+               {/* Link tag is react component that is used to generate an anchored tag that renders in the DOM (HTML Document) */}
+               {/* We do not need to Link tag be created that the user has to click to navigate back to the last screen */}
+               {/* after the post has been created */}
+               {/* we want to automatically navigate the user the instant we know that the Post has been created successfully. */}
+               {/* so we refer to this as programmatic navigation, and Link tag is not for programmatic navigation */}
                <Link to="/" className="btn btn-danger">Cancel</Link>
             </form>
         );
