@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { fetchPost } from '../actions';
 
 class PostsShow extends Component {
@@ -14,7 +15,7 @@ class PostsShow extends Component {
         // posts[this.props.match.params.id]; //the post we want to show
         const { post } = this.props;
 
-        // when we render this component, when a post has not yet been fetched corretly
+        // when we render this component, when a post has not yet been fetched correctly
         // will show the loading div
         if(!post) {
             return <div>Loading...</div>;
@@ -22,6 +23,7 @@ class PostsShow extends Component {
 
         return (
             <div>
+                <Link to="/">Back To Index</Link>
                 <h3>{post.title}</h3>
                 <h6>Categories: {post.categories}</h6>
                 <p>{post.content}</p>
