@@ -1,10 +1,12 @@
 import _ from 'lodash';
-import { FETCH_POSTS, FETCH_POST } from '../actions';
+import { FETCH_POSTS, FETCH_POST, DELETE_POST } from '../actions';
 
 // tihis function will receive the previous state and action
 // default our state in an object in our initial call
 export default function(state = {}, action) {
     switch(action.type) {
+        case DELETE_POST:
+            return _.omit(state, action.payload);
         case FETCH_POST:
             // take all the existing posts that we have, take them all out in the state object
             // and put them into this new object that we are about to return
